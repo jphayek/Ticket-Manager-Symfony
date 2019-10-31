@@ -3,10 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>Ticket Master</header>
+        {% block body %}<img src="{{ asset('images/logo.png') }}" alt="Symfony!"/>{% endblock %}
         {% block javascripts %}{% endblock %}
+        <footer>&copy;Deadman 2016-{{ "now" |date("Y") }}</footer>
     </body>
 </html>
