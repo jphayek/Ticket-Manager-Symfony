@@ -31,6 +31,7 @@ security:
                 # checkbox in the login form (see below), uncomment the
                 # following line to always enable it.
                 #always_remember_me: true
+                 token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
