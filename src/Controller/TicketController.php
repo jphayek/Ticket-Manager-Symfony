@@ -12,6 +12,7 @@ class TicketController extends AbstractController
      */
     public function ticket()
     {
+        return new Response("Ticket");
         return $this->render('ticket/index.html.twig', [
             'controller_name' => 'TicketController',
         ]);

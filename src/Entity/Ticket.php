@@ -21,6 +21,11 @@ class Ticket
      */
     private $Ticket;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $Comments;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,18 @@ class Ticket
     public function setTicket(string $Ticket): self
     {
         $this->Ticket = $Ticket;
+
+        return $this;
+    }
+
+    public function getComments(): ?string
+    {
+        return $this->Comments;
+    }
+
+    public function setComments(string $Comments): self
+    {
+        $this->Comments = $Comments;
 
         return $this;
     }
