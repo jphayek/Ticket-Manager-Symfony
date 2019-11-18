@@ -11,7 +11,7 @@ security:
                     jp@user.com:
                         password: jpuser{U+7bLor2/K7sVvUanixaDStOAfcsCKQyDoHOtfnK}
                         roles: 'ROLE_USER'
-                    admin:
+                    admin@admin.com:
                         password: $2a$12$cyTWeE9kpq1PjqKFiWUZFuCRPwVyAZwm4XzMZ1qPUFl7/flCM3V0G
                         roles: 'ROLE_ADMIN'
         my_provider:
@@ -47,8 +47,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+    # require ROLE_ADMIN for /admin*
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ticket, roles: IS_AUTHENTICATED_FULLY }
-        # require ROLE_ADMIN for /admin*
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        
