@@ -1,0 +1,17 @@
+body {
+	background-color: black;
+	color: whitesmoke;
+}
+
+header,
+footer {
+	border: 1px solid whitesmoke;
+}
+
+footer {
+	margin-top: 25px;
+}
+
+.article-date {
+	font-size: 12px;
+}
