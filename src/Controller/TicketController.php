@@ -24,6 +24,7 @@ public function show(Ticket $Ticket)
 {
     // use the Ticket!
     // ...
+    return new Response("Ticket");
 }
 }
 
