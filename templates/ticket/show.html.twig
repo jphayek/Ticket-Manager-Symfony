@@ -12,20 +12,12 @@
                 <td>{{ ticket.id }}</td>
             </tr>
             <tr>
-                <th>Author</th>
-                <td>{{ ticket.Author }}</td>
+                <th>Ticket</th>
+                <td>{{ ticket.Ticket }}</td>
             </tr>
             <tr>
-                <th>Title</th>
-                <td>{{ ticket.title }}</td>
-            </tr>
-            <tr>
-                <th>Message</th>
-                <td>{{ ticket.message }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ ticket.date ? ticket.date|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Comments</th>
+                <td>{{ ticket.Comments }}</td>
             </tr>
         </tbody>
     </table>
