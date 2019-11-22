@@ -17,7 +17,7 @@ security:
         my_provider:
             entity:
                 class: App\Entity\User
-                property: username 
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -26,6 +26,8 @@ security:
             anonymous: true
 
             form_login:
+                default_target_path: after_login_route_name
+                always_use_default_target_path: true
                 login_path: login
                 check_path: login
                 provider: my_provider
@@ -50,6 +52,6 @@ security:
     # require ROLE_ADMIN for /admin*
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ticket, roles: IS_AUTHENTICATED_FULLY }
         
