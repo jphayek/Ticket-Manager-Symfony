@@ -9,8 +9,7 @@ security:
             memory:
                 users:
                     jp@user.com:
-                        password: jpuser{U+7bLor2/K7sVvUanixaDStOAfcsCKQyDoHOtfnK}
-                        roles: 'ROLE_USER'
+                        password: jpuser
                     jp@admin.com:
                         password: jpadmin
                         roles: 'ROLE_ADMIN'
