@@ -24,18 +24,28 @@ class RegistrationController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
 
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+            // maybe set a "flash" success message for the user
+            $this->addFlash(
+                'notice',
+                'You are finally registered to TICKET MANAGER by JP'
+            );
 
             // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
+            
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
 
-            return $this->redirectToRoute('replace_with_some_route');
         }
 
         return $this->render(

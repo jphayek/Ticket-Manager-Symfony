@@ -26,6 +26,10 @@ class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $username;
 
     /**
      * @var string The hashed password
@@ -37,6 +41,7 @@ class User implements UserInterface
     {
         return $this->id;
     }
+
 
     public function getEmail(): ?string
     {
@@ -55,9 +60,15 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
-        return (string) $this->email;
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+        return $this;
     }
 
     /**

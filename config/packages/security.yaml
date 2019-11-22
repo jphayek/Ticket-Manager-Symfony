@@ -11,8 +11,8 @@ security:
                     jp@user.com:
                         password: jpuser{U+7bLor2/K7sVvUanixaDStOAfcsCKQyDoHOtfnK}
                         roles: 'ROLE_USER'
-                    admin@admin.com:
-                        password: $2a$12$cyTWeE9kpq1PjqKFiWUZFuCRPwVyAZwm4XzMZ1qPUFl7/flCM3V0G
+                    jp@admin.com:
+                        password: jpadmin
                         roles: 'ROLE_ADMIN'
         my_provider:
             entity:
@@ -54,4 +54,5 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ticket, roles: IS_AUTHENTICATED_FULLY }
+        
         

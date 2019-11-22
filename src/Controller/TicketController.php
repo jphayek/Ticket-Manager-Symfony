@@ -24,7 +24,10 @@ public function show(Ticket $Ticket)
 {
     // use the Ticket!
     // ...
-    return new Response("Ticket");
+    return $this->render('ticket/show.html.twig', [
+        'ticket' => $ticket,
+        'form' => $form->createView(),
+    ]);
 }
 }
 
