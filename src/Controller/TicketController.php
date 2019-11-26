@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Security\Core\Security;
 /**
  * @Route("/ticket")
  */
@@ -18,11 +18,19 @@ class TicketController extends AbstractController
     /**
      * @Route("/", name="ticket_index", methods={"GET"})
      */
-    public function index(TicketRepository $ticketRepository): Response
+    public function index(TicketRepository $ticketRepository,Security $Securitory): Response
     {
-        return $this->render('ticket/index.html.twig', [
-            'tickets' => $ticketRepository->findAll(),
-        ]);
+        if ( $Securitory->getUser()->getRoles()[0] == "ROLE_USER") {
+            return $this->render('ticket/index.html.twig', [
+                'tickets' => $ticketRepository->findOneBy(['iduser' => 'ticket']),
+            ]);
+        }else {
+            return $this->render('ticket/index.html.twig', [
+                'tickets' => $ticketRepository->findAll(),
+            ]);
+        }
+       
+        
     }
 
     /**
