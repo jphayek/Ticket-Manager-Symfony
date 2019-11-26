@@ -22,7 +22,14 @@
                 <td>{{ ticket.Comments }}</td>
                 <td>
                     <a href="{{ path('ticket_show', {'id': ticket.id}) }}">show</a>
-                    <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
+                  
+                    {% if is_granted('ROLE_ADMIN') %} 
+                    
+                        {{ include('ticket/_delete_form.html.twig') }}
+                        <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
+
+                    {% endif %}
+                    
                 </td>
             </tr>
         {% else %}
