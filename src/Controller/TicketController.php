@@ -19,7 +19,8 @@ class TicketController extends AbstractController
      * @Route("/", name="ticket_index", methods={"GET"})
      */
     public function index(TicketRepository $ticketRepository,Security $Securitory): Response
-    {  if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+    {  
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
         return $this->redirectToRoute('app_login');
       }
     else{
@@ -33,7 +34,7 @@ class TicketController extends AbstractController
                 'tickets' => $ticketRepository->findAll(),
             ]);
         }
-        
+
     }
         
     }

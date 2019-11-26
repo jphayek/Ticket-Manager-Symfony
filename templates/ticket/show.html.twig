@@ -26,5 +26,5 @@
 
     <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
 
-    {{ include('ticket/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %} {{ include('ticket/_delete_form.html.twig') }} {% endif %}
 {% endblock %}
