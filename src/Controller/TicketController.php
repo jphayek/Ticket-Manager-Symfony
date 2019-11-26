@@ -19,7 +19,11 @@ class TicketController extends AbstractController
      * @Route("/", name="ticket_index", methods={"GET"})
      */
     public function index(TicketRepository $ticketRepository,Security $Securitory): Response
-    {
+    {  if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        return $this->redirectToRoute('app_login');
+      }
+    else{
+
         if ( $Securitory->getUser()->getRoles()[0] == "ROLE_USER") {
             return $this->render('ticket/index.html.twig', [
                 'tickets' => $ticketRepository->findBy(['user' => $Securitory->getUser()->getId()]),
@@ -29,7 +33,8 @@ class TicketController extends AbstractController
                 'tickets' => $ticketRepository->findAll(),
             ]);
         }
-       
+        
+    }
         
     }
 
