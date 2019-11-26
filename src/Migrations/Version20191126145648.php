@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191122155823 extends AbstractMigration
+final class Version20191126145648 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20191122155823 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE ticket ADD iduser_id INT NOT NULL');
-        $this->addSql('ALTER TABLE ticket ADD CONSTRAINT FK_97A0ADA3786A81FB FOREIGN KEY (iduser_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_97A0ADA3786A81FB ON ticket (iduser_id)');
+        $this->addSql('ALTER TABLE ticket ADD user INT NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,6 @@ final class Version20191122155823 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE ticket DROP FOREIGN KEY FK_97A0ADA3786A81FB');
-        $this->addSql('DROP INDEX IDX_97A0ADA3786A81FB ON ticket');
-        $this->addSql('ALTER TABLE ticket DROP iduser_id');
+        $this->addSql('ALTER TABLE ticket DROP user');
     }
 }

@@ -22,7 +22,7 @@ class TicketController extends AbstractController
     {
         if ( $Securitory->getUser()->getRoles()[0] == "ROLE_USER") {
             return $this->render('ticket/index.html.twig', [
-                'tickets' => $ticketRepository->findOneBy(['iduser' => 'ticket']),
+                'tickets' => $ticketRepository->findBy(['user' => $Securitory->getUser()->getId()]),
             ]);
         }else {
             return $this->render('ticket/index.html.twig', [
@@ -36,12 +36,12 @@ class TicketController extends AbstractController
     /**
      * @Route("/new", name="ticket_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,Security $Securitory): Response
     {
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
-
+        $ticket->setUser($Securitory->getUser()->getId());
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);

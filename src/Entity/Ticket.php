@@ -29,15 +29,11 @@ class Ticket
     private $Comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\user", mappedBy="ticket")
+     * @ORM\Column(type="integer")
      */
     private $user;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="tickets")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $iduser;
+
 
     public function __construct()
     {
@@ -106,45 +102,14 @@ class Ticket
         return $this;
     }
 
-    /**
-     * @return Collection|user[]
-     */
-    public function getUser(): Collection
+    public function getUser(): ?int
     {
         return $this->user;
     }
 
-    public function addUser(user $user): self
+    public function setUser(int $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setTicket($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(user $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getTicket() === $this) {
-                $user->setTicket(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getIduser(): ?user
-    {
-        return $this->iduser;
-    }
-
-    public function setIduser(?user $iduser): self
-    {
-        $this->iduser = $iduser;
+        $this->user = $user;
 
         return $this;
     }
